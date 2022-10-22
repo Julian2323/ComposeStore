@@ -1,26 +1,27 @@
 package com.example.composestore.presentation.product_list
 
-import androidx.compose.foundation.ExperimentalFoundationApi
+
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.composestore.common.components.CustomScaffold
 import com.example.composestore.presentation.Screen
 import com.example.composestore.presentation.product_list.components.ProductListItem
 import com.example.composestore.presentation.product_list.components.SearchBar
 
-@OptIn(ExperimentalFoundationApi::class)
+
 @Composable
 fun ProductListScreen(
     navController: NavController,
@@ -34,7 +35,9 @@ fun ProductListScreen(
         ) {
             Text(
                 text = "Hi, Julian",
-                style = MaterialTheme.typography.h3
+                style = MaterialTheme.typography.h3,
+                color = Color.Black,
+                modifier = Modifier.padding(horizontal = 12.dp)
             )
             Spacer(modifier = Modifier.height(15.dp))
             SearchBar(
@@ -49,7 +52,7 @@ fun ProductListScreen(
             Spacer(modifier = Modifier.height(15.dp))
 
             LazyVerticalGrid(
-                cells = GridCells.Fixed(2),
+                columns = GridCells.Fixed(2),
                 contentPadding = PaddingValues(20.dp)
             ) {
                 items(state.products) { product ->
@@ -78,5 +81,14 @@ fun ProductListScreen(
         if (state.isLoading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
+    }
+}
+
+@Composable
+fun ProductListScreenImpl(
+    navController: NavController
+) {
+    CustomScaffold(navController) {
+        ProductListScreen(navController)
     }
 }

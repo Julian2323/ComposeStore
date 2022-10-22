@@ -46,12 +46,14 @@ fun ProductListItem(
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = "${product.title}",
-                style = MaterialTheme.typography.body1
+                style = MaterialTheme.typography.body1,
+                color = Color.Black
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = "${product.category}",
-                style = MaterialTheme.typography.body2
+                style = MaterialTheme.typography.body2,
+                color = Color.Black
             )
             Spacer(modifier = Modifier.height(8.dp))
             //RatingBar
@@ -63,16 +65,18 @@ fun ProductListItem(
                 Icon(
                     modifier = Modifier
                         .size(18.dp)
-                        .align(CenterVertically),
+                        .align(CenterVertically)
+                        .padding(bottom = 2.dp),
                     painter = painterResource(id = R.drawable.ic_star),
                     contentDescription = null,
-                    tint = Color.Yellow
+                    tint = MaterialTheme.colors.secondary
                 )
                 Text(
                     modifier = Modifier.align(CenterVertically),
                     text = "${product.rating.rate} (${product.rating.count})",
                     fontSize = 14.sp,
-                    fontWeight = FontWeight.Light
+                    fontWeight = FontWeight.Light,
+                    color = Color.Black
                 )
             }
             // RatingBar
@@ -80,7 +84,8 @@ fun ProductListItem(
             Text(
                 text = "$${product.price}",
                 style = MaterialTheme.typography.body2,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
             )
             Spacer(modifier = Modifier.height(8.dp))
         }

@@ -1,6 +1,5 @@
 package com.example.composestore.presentation.product_detail
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -15,8 +14,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.composestore.R
+import com.example.composestore.common.components.CustomScaffold
 
 @Composable
 fun ProductDetailScreen(
@@ -53,7 +54,8 @@ fun ProductDetailScreen(
                                 text = "${product.title}",
                                 style = MaterialTheme.typography.h1,
                                 fontWeight = FontWeight.SemiBold,
-                                fontSize = 18.sp
+                                fontSize = 18.sp,
+                                color = Color.Black
                             )
                             Spacer(modifier = Modifier.height(15.dp))
                             //RatingBar
@@ -65,16 +67,18 @@ fun ProductDetailScreen(
                                 Icon(
                                     modifier = Modifier
                                         .size(18.dp)
+                                        .padding(bottom = 6.dp)
                                         .align(Alignment.CenterVertically),
                                     painter = painterResource(id = R.drawable.ic_star),
                                     contentDescription = null,
-                                    tint = Color.Yellow
+                                    tint = MaterialTheme.colors.secondary
                                 )
                                 Text(
                                     modifier = Modifier.align(Alignment.CenterVertically),
                                     text = "${product.rating.rate} (${product.rating.count})",
                                     fontSize = 14.sp,
-                                    fontWeight = FontWeight.Light
+                                    fontWeight = FontWeight.Light,
+                                    color = Color.Black
                                 )
                             }
                             // RatingBar
@@ -83,7 +87,8 @@ fun ProductDetailScreen(
                                 text = "${product.description}",
                                 style = MaterialTheme.typography.h2,
                                 fontWeight = FontWeight.Light,
-                                fontSize = 12.sp
+                                fontSize = 12.sp,
+                                color = Color.Black
                             )
                             Spacer(modifier = Modifier.height(15.dp))
                         }
@@ -98,7 +103,8 @@ fun ProductDetailScreen(
                         Text(
                             text = "$${product.price}",
                             fontWeight = FontWeight.Bold,
-                            fontSize = 24.sp
+                            fontSize = 24.sp,
+                            color = Color.Black
                         )
                         Spacer(modifier = Modifier.height(24.dp))
                         Button(
@@ -106,7 +112,7 @@ fun ProductDetailScreen(
                             },
                             colors = ButtonDefaults.buttonColors(
                                 contentColor = Color.Black,
-                                backgroundColor = Color.LightGray,
+                                backgroundColor = MaterialTheme.colors.secondary,
                             ),
                             shape = RoundedCornerShape(16.dp)
                         ) {
@@ -116,7 +122,8 @@ fun ProductDetailScreen(
                                     .padding(5.dp),
                                 fontSize = 16.sp,
                                 textAlign = TextAlign.Center,
-                                text = "Add to Cart"
+                                text = "Add to Cart",
+                                color = Color.Black
                             )
                         }
                     }
@@ -136,5 +143,14 @@ fun ProductDetailScreen(
         if (state.isLoading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
+    }
+}
+
+@Composable
+fun ProductDetailScreenImpl(
+    navController: NavController
+) {
+    CustomScaffold(navController) {
+        ProductDetailScreen()
     }
 }
