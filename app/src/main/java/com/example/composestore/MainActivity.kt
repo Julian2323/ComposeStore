@@ -14,8 +14,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.composestore.presentation.Screen
+import com.example.composestore.presentation.auth.login.LoginScreen
+import com.example.composestore.presentation.auth.signup.SignupScreen
+import com.example.composestore.presentation.cart.CartScreen
+import com.example.composestore.presentation.favorites.FavoritesScreen
 import com.example.composestore.presentation.product_detail.ProductDetailScreen
+import com.example.composestore.presentation.product_detail.ProductDetailScreenImpl
 import com.example.composestore.presentation.product_list.ProductListScreen
+import com.example.composestore.presentation.product_list.ProductListScreenImpl
+import com.example.composestore.presentation.profile.ProfileScreen
 import com.example.composestore.ui.theme.ComposeStoreTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,17 +40,42 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = Screen.ProductListScreen.route
+                        startDestination = Screen.LoginScreen.route
                     ) {
+                        composable(
+                            route = Screen.LoginScreen.route
+                        ) {
+                            LoginScreen(navController)
+                        }
+                        composable(
+                            route = Screen.SignupScreen.route
+                        ) {
+                            SignupScreen(navController)
+                        }
                         composable(
                             route = Screen.ProductListScreen.route
                         ) {
-                            ProductListScreen(navController)
+                            ProductListScreenImpl(navController)
                         }
                         composable(
                             route = Screen.ProductDetailScreen.route + "/{product_id}"
                         ) {
-                            ProductDetailScreen()
+                            ProductDetailScreenImpl(navController)
+                        }
+                        composable(
+                            route = Screen.ProfileScreen.route
+                        ) {
+                            ProfileScreen(navController)
+                        }
+                        composable(
+                            route = Screen.FavoritesScreen.route
+                        ) {
+                            FavoritesScreen(navController)
+                        }
+                        composable(
+                            route = Screen.CartScreen.route
+                        ) {
+                            CartScreen(navController)
                         }
                     }
                 }

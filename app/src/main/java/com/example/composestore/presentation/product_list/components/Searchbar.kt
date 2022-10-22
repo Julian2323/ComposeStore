@@ -6,12 +6,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material.Text
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.focus.FocusState
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
@@ -23,6 +21,8 @@ fun SearchBar(
     onSearch: (String) -> Unit = {}
 
 ){
+
+
 
     var text by remember {
         mutableStateOf("")
@@ -45,7 +45,7 @@ fun SearchBar(
             modifier = Modifier
                 .fillMaxWidth()
                 .shadow(5.dp, CircleShape)
-                .background(Color.White, CircleShape)
+                .background(MaterialTheme.colors.surface, CircleShape)
                 .padding(horizontal = 20.dp, vertical = 12.dp)
 
         )
